@@ -5,15 +5,16 @@ import { Menu } from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeline';
 
 import config from '../config.json';
+import { Banner } from '../src/components/Banner';
 
 const StyledHeader = styled.header`
-  img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-  }
-
   section {
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+
     display: flex;
     align-items: center;
     width: 100%;
@@ -29,7 +30,7 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-      {/* <img src="banner" alt="Banner" /> */}
+      <Banner url={config.banner} />
 
       <section>
         <img
@@ -74,13 +75,13 @@ function Timeline(props) {
 
 function HomePage() {
   return (
-    <>
+    <div>
       <CSSReset />
 
-      <Header />
       <Menu />
+      <Header />
       <Timeline playlists={config.playlists} />
-    </>
+    </div>
   );
 }
 
