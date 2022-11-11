@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Search } from './components/Search';
+import { DarkModeSwitch } from './components/DarkModeSwitch';
 
 function Logo() {
   return (
@@ -87,6 +88,8 @@ export function Menu({ valorDoFiltro, setValorDoFiltro }) {
         valorDoFiltro={valorDoFiltro}
         setValorDoFiltro={setValorDoFiltro}
       />
+
+      <DarkModeSwitch />
     </StyledMenu>
   );
 }

@@ -9,6 +9,8 @@ import { Banner } from '../src/components/Banner';
 import { useState } from 'react';
 
 const StyledHeader = styled.header`
+  background-color: ${({ theme }) => theme.backgroundLevel1};
+
   section {
     img {
       width: 80px;
