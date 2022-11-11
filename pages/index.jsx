@@ -6,6 +6,7 @@ import { StyledTimeline } from '../src/components/Timeline';
 
 import config from '../config.json';
 import { Banner } from '../src/components/Banner';
+import { useState } from 'react';
 
 const StyledHeader = styled.header`
   section {
@@ -46,25 +47,31 @@ function Header() {
   );
 }
 
-function Timeline(props) {
-  const playlistNames = Object.keys(props.playlists);
+function Timeline({ valorDoFiltro, playlists }) {
+  const playlistNames = Object.keys(playlists);
 
   return (
     <StyledTimeline>
       {playlistNames.map((playlistName) => {
-        const videos = props.playlists[playlistName];
+        const videos = playlists[playlistName];
 
         return (
           <section key={playlistName}>
             <h2>{playlistName}</h2>
             <div>
-              {videos.map((video) => (
-                <a href={video.url} key={video.url}>
-                  <img src={video.thumb} alt={video.name} />
+              {videos
+                .filter((video) =>
+                  video.title
+                    .toLowerCase()
+                    .includes(valorDoFiltro.toLowerCase())
+                )
+                .map((video) => (
+                  <a href={video.url} key={video.url}>
+                    <img src={video.thumb} alt={video.title} />
 
-                  <strong>{video.name}</strong>
-                </a>
-              ))}
+                    <strong>{video.title}</strong>
+                  </a>
+                ))}
             </div>
           </section>
         );
@@ -74,13 +81,15 @@ function Timeline(props) {
 }
 
 function HomePage() {
+  const [valorDoFiltro, setValorDoFiltro] = useState('');
+
   return (
     <div>
       <CSSReset />
 
-      <Menu />
+      <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
       <Header />
-      <Timeline playlists={config.playlists} />
+      <Timeline playlists={config.playlists} valorDoFiltro={valorDoFiltro} />
     </div>
   );
 }
