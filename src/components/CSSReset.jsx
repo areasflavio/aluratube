@@ -61,8 +61,8 @@ export const CSSReset = createGlobalStyle`
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.textColorBase};
+    background-color: ${({ theme }) => theme.borderBase};
     border-radius: 20px;
-    border: 3px solid ${({ theme }) => theme.backgroundBase};
+    border: 3px solid ${({ theme }) => theme.borderBase};
   } 
 `;
